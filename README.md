@@ -112,5 +112,5 @@ $ PYTHONPATH=./airflow/dags pytest ./tests/unit_tests
 When you are done with the project and you wish to stop and delete the all created images, containers, volumes please run:
 
 ```
-$ docker-compose down --volumes --rmi all
+$ docker-compose --project-directory ./airflow down --volumes --rmi all
 ```
