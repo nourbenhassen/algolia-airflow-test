@@ -38,7 +38,7 @@ Step 2: Execute this command to run the corresponding containers:
 $ docker-compose --project-directory ./airflow up
 ```
 
-Once the containers are running, you can go to  http://localhost:8080/ to interact with Airflow UI.
+Once the containers are running, you can go to  http://localhost:8080/ to interact with Airflow UI (login: airflow, password: airflow).
 
 Please do these  last steps on the UI to finalize the set up:
 \
