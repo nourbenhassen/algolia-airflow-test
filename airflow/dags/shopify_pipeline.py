@@ -22,21 +22,16 @@ conn = hook.get_conn()
 
 
 if "start_date" in config.keys():
-    start_date_datetime = parser.parse(config["start_date"])
-    start_date = date(
-        start_date_datetime.year, start_date_datetime.month, start_date_datetime.day
-    )
+    start_date = parser.parse(config["start_date"]).date()
 
     if "end_date" in config.keys():
-        end_date_datetime = parser.parse(config["end_date"])
-        end_date = date(
-            end_date_datetime.year, end_date_datetime.month, end_date_datetime.day
-        )
+        end_date = parser.parse(config["end_date"]).date()
+
     else:
         end_date = start_date
 else:
-    yesterday = datetime.today() - timedelta(days=1)
-    start_date = end_date = date(yesterday.year, yesterday.month, yesterday.day)
+    yesterday = date.today() - timedelta(days=1)
+    start_date = end_date = yesterday
 
 
 def process_and_load_data(
