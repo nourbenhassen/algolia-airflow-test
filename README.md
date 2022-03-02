@@ -40,7 +40,7 @@ $ docker-compose --project-directory ./airflow up
 
 Once the containers are running, you can go to  http://localhost:8080/ to interact with Airflow UI (login: airflow, password: airflow).
 
-Please do these  last steps on the UI to finalize the set up:
+Please do these last steps on the UI to finalize the set up:
 \
 Step 3: Add a variable: 
  * Go to: Admin > Variables > + Add a new record 
@@ -65,6 +65,7 @@ Please add the following records in the corresponding cells:
 * Password -> airflow 
 * Port -> 5432
 
+You're now ready to run the DAG.
 
  ### __3. RUNNING THE DATA PIPELINE__
  <a name="running-data-pipeline"></a>
@@ -78,8 +79,8 @@ You can also indicate the same date in *start_date* and *end_date* and the dag w
 
 However: if you indicate only *end_date*, or neither *start_date* nor *start_date* then the dag will run taking into account today's date - 1 (yesterday), it means that only one file will be fetched, corresponding to the one ingested at 2 AM.
 
-It was supposed that the file generated at 2 AM contains yesterday's date. 
-To give an example, the file generated on 2022-02-26 at 2 AM, has the following url path: *alg-data-public.s3.amazonaws.com/2022-02-25.csv*
+An assumption was made that the file generated at 2AM contains yesterday's date. 
+To give an example, the file generated on 2022-02-26 at 2 AM, can be downloaded using the following url path: *alg-data-public.s3.amazonaws.com/2022-02-25.csv*
 
 Once the dates are set, the DAG can be run.
 
@@ -91,7 +92,7 @@ The second task fetches the data (one or several csv files) from the given url, 
 
 ### __4. TESTING__
 <a name="testing"></a>
-The functions used in the DAG were tested (tests can be read in *./tests/unit_tests*). 
+The functions used in the DAG were tested (tests can be found in *./tests/unit_tests*). 
 
 The OSS Airflow project uses pytest, so the same was used in this project.
 
@@ -108,8 +109,7 @@ $ PYTHONPATH=./airflow/dags pytest ./tests/unit_tests
  ### __5.DELETING IMAGES, CONTAINERS, VOLUMES THAT WERE CREATED__
  <a name="deleting"></a>
 
-
-When you are done with the project and you wish to stop and delete the all created images, containers, volumes please run:
+When you are done with the project and wish to stop the containers, and delete the created images & volumes please run:
 
 ```
 $ docker-compose --project-directory ./airflow down --volumes --rmi all
